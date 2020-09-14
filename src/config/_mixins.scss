@@ -1,0 +1,13 @@
+@mixin flexCenter($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
+
+@mixin linkUnstyle {
+  text-decoration: none;
+  &:visited {
+    color: inherit;
+  }
+}

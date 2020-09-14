@@ -1,0 +1,19 @@
+@import '../config/variables';
+@import '../config/mixins';
+
+.Topbar {
+  @include flexCenter(row);
+  background-color: $color2;
+  height: 70px;
+}
+
+.Topbar__Link {
+  @include linkUnstyle();
+}
+
+.Topbar__Title {
+  color: $color4;
+  margin: 0;
+  font-size: 2rem;
+  font-style: italic;
+}

@@ -1,0 +1,74 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.Sidebar {
+  @include flexCenter(column);
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 15vw;
+  height: 100vh;
+  background-color: $color2;
+  box-sizing: border-box;
+  padding: 0 1em;
+}
+
+.Sidebar__DividerLine {
+  width: 100%;
+  height: 2px;
+  margin-bottom: auto;
+  background-color: #fff;
+}
+
+.Sidebar__List {
+  @include flexCenter(column);
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-top: 2px dashed $color1;
+  list-style: none;
+  color: $color1;
+  font-size: 1.8rem;
+  font-style: italic;
+}
+
+.Sidebar__ListItem {
+  @include flexCenter(row);
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0.5em 0;
+  cursor: pointer;
+  transition: 0.2s;
+  text-align: left;
+  &:hover {
+    color: $color1-hover;
+    padding-left: 1em;
+  }
+}
+
+.Sidebar__Link {
+  @include linkUnstyle();
+}
+
+.Sidebar__ActiveRoute {
+  position: relative;
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    display: block;
+    content: '';
+    width: 15px;
+    height: 15px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: $color1-hover;
+  }
+}
+
+.Sidebar__Icon {
+  font-size: 1.8rem;
+  margin-right: 0.5em;
+}

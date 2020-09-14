@@ -1,0 +1,19 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.Home__Header {
+  @include flexCenter(column);
+  padding-top: 5%;
+  color: #26ca34;
+}
+
+.Home__Title {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.Home__Subtitle {
+  margin: 0;
+  font-size: 1.6rem;
+  color: $color4;
+}
