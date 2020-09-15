@@ -2,4 +2,11 @@
 @import '../config/variables';
 
 .Countries {
+  @include flexCenter(row);
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  box-sizing: border-box;
+  padding: 1em;
 }

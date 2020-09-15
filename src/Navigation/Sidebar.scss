@@ -4,20 +4,21 @@
 .Sidebar {
   @include flexCenter(column);
   position: fixed;
-  top: 70px;
+  top: 0;
   left: 0;
-  width: 15vw;
+  width: 230px;
   height: 100vh;
+  min-height: 360px;
   background-color: $color2;
   box-sizing: border-box;
   padding: 0 1em;
+  transition: 0.3s;
 }
 
-.Sidebar__DividerLine {
+.Sidebar__DividingLine {
   width: 100%;
-  height: 2px;
-  margin-bottom: auto;
-  background-color: #fff;
+  border-top: 2px dashed $color1;
+  margin-top: 70px;
 }
 
 .Sidebar__List {
@@ -27,7 +28,6 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  border-top: 2px dashed $color1;
   list-style: none;
   color: $color1;
   font-size: 1.8rem;
@@ -60,8 +60,8 @@
     right: -30px;
     display: block;
     content: '';
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     transform: translateY(-50%);
     border-radius: 50%;
     background-color: $color1-hover;
@@ -71,4 +71,10 @@
 .Sidebar__Icon {
   font-size: 1.8rem;
   margin-right: 0.5em;
+}
+
+@media (max-width: 1024px) {
+  .Sidebar {
+    left: -230px;
+  }
 }

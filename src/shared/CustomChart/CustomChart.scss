@@ -1,0 +1,34 @@
+@import '../../config/variables';
+
+.CustomChart {
+  position: relative;
+  width: 45%;
+  height: 45%;
+  min-width: 360px;
+  margin: 5em 0;
+}
+
+.CustomChart__SelectWraper {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+}
+
+.CustomChart__Select {
+  padding: 0.3em 1em;
+  background-color: $color1;
+  border-radius: 5px;
+  color: $color4;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    background-color: $color1-hover;
+  }
+}
+
+@media (max-width: 1280px) {
+  .CustomChart {
+    width: 90%;
+  }
+}

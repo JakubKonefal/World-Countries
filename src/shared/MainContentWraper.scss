@@ -1,7 +1,16 @@
 @import '../config/variables';
 
 .Main {
-  margin-left: 15vw;
+  display: block;
+  margin-left: 230px;
+  margin-top: 70px;
   min-height: calc(100vh - 70px);
   background-color: $color3;
+  transition: 0.3s;
+}
+
+@media (max-width: 1024px) {
+  .Main {
+    margin-left: 0;
+  }
 }

@@ -4,7 +4,8 @@ import StylesProvider from '@material-ui/styles/StylesProvider';
 import {
   FlagOutlined,
   PeopleAltOutlined,
-  TerrainOutlined
+  TerrainOutlined,
+  Menu,
 } from '@material-ui/icons';
 import './Sidebar.scss';
 
@@ -12,6 +13,8 @@ const Sidebar = () => {
   return (
     <StylesProvider injectFirst>
       <nav className="Sidebar">
+        {/* <Menu className="Sidebar__MenuIcon" /> */}
+        <div className="Sidebar__DividingLine" />
         <ul className="Sidebar__List">
           <li className="Sidebar__ListItem">
             <NavLink
