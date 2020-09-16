@@ -7,9 +7,15 @@ import {
   Pie,
   Radar,
 } from 'react-chartjs-2';
+import Chart from 'chart.js';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import './CustomChart.scss';
 
 const CustomChart = ({ initialType, availableTypes, data, options }) => {
+  Chart.defaults.global.legend.display = false;
+  Chart.defaults.global.title.fontSize = 16;
+  Chart.defaults.global.title.fontColor = '#eae6e5';
+
   const [chosenType, setChosenType] = useState(initialType);
 
   const handleSelectChartType = e => {
@@ -150,7 +156,11 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
         </div>
       );
     default:
-      return <h3>Error</h3>;
+      return (
+        <div className="CustomChart">
+          <ErrorMessage label="Graph not loaded!" />
+        </div>
+      );
   }
 };
 

@@ -3,10 +3,17 @@ import axios from 'axios';
 import CustomChart from '../shared/CustomChart/CustomChart';
 import {
   getCountriesWithMostNeighbours,
-  getCountriesOnSouthAndNorth,
+  getCountriesInHemispheres,
+  getCountriesInRegions,
+  getGiniIndexesForCountries,
 } from '../utils/dataTransform';
-import { mostNeighborsOptions } from '../utils/chartsOptions';
+import {
+  mostNeighboursOptions,
+  countriesHemispheresOptions,
+  countriesInRegionsOptions,
+} from '../utils/chartsOptions';
 import Spinner from '../shared/Spinner/Spinner';
+import ErrorMessage from '../shared/ErrorMessage/ErrorMessage';
 import './Countries.scss';
 
 const Countries = () => {
@@ -15,23 +22,33 @@ const Countries = () => {
   }, []);
 
   const [dataLoading, setDataLoading] = useState(true);
+  const [dataErrorMsg, setDataErrorMsg] = useState('');
   const [countriesWithMostNeighbors, setCountriesWithMostNeighbors] = useState(
     [],
   );
+  const [countriesInHemispheres, setCountriesInHemispheres] = useState([]);
+  const [countriesInRegions, setCountriesInRegions] = useState([]);
+  const [countriesWithGiniIndexes, setCountriesWithGiniIndexes] = useState([]);
 
   const getInitialData = () => {
     axios
       .get('https://restcountries.eu/rest/v2/all')
       .then(res => {
-        console.log(res.data);
-        setDataLoading(false);
-        setCountriesWithMostNeighbors(
-          getCountriesWithMostNeighbours(res.data, 20),
-        );
-        getCountriesOnSouthAndNorth(res.data);
+        const { data } = res;
+        if (data) {
+          console.log(data);
+          setDataLoading(false);
+          setCountriesWithMostNeighbors(
+            getCountriesWithMostNeighbours(data, 20),
+          );
+          setCountriesInHemispheres(getCountriesInHemispheres(data));
+          setCountriesInRegions(getCountriesInRegions(data));
+          setCountriesWithGiniIndexes(getGiniIndexesForCountries(data));
+        }
       })
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
+        setDataLoading(false);
+        setDataErrorMsg('Error while trying to get data!');
       });
   };
 
@@ -41,30 +58,36 @@ const Countries = () => {
 
   return (
     <div className="Countries">
-      <CustomChart
-        initialType="Vertical Bars"
-        availableTypes={['Horizontal Bars', 'Vertical Bars']}
-        data={countriesWithMostNeighbors}
-        options={mostNeighborsOptions}
-      />
-      <CustomChart
-        initialType="Horizontal Bars"
-        availableTypes={['Horizontal Bars', 'Vertical Bars']}
-        data={countriesWithMostNeighbors}
-        options={mostNeighborsOptions}
-      />
-      <CustomChart
-        initialType="Vertical Bars"
-        availableTypes={['Horizontal Bars', 'Vertical Bars']}
-        data={countriesWithMostNeighbors}
-        options={mostNeighborsOptions}
-      />
-      <CustomChart
-        initialType="Horizontal Bars"
-        availableTypes={['Horizontal Bars', 'Vertical Bars']}
-        data={countriesWithMostNeighbors}
-        options={mostNeighborsOptions}
-      />
+      {dataErrorMsg ? (
+        <ErrorMessage label={dataErrorMsg} />
+      ) : (
+        <>
+          <CustomChart
+            initialType="Horizontal Bars"
+            availableTypes={['Vertical Bars', 'Horizontal Bars']}
+            data={countriesWithMostNeighbors}
+            options={mostNeighboursOptions}
+          />
+          <CustomChart
+            initialType="Doughnut"
+            availableTypes={['Pie', 'Doughnut']}
+            data={countriesInHemispheres}
+            options={countriesHemispheresOptions}
+          />
+          <CustomChart
+            initialType="Pie"
+            availableTypes={['Doughnut', 'Pie']}
+            data={countriesInRegions}
+            options={countriesInRegionsOptions}
+          />
+          <CustomChart
+            initialType="Horizontal Bars"
+            availableTypes={['Horizontal Bars', 'Vertical Bars']}
+            data={countriesWithMostNeighbors}
+            options={mostNeighboursOptions}
+          />
+        </>
+      )}
     </div>
   );
 };

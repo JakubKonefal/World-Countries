@@ -39,7 +39,7 @@ export const getCountriesWithMostNeighbours = (data, number) => {
     labels,
     datasets: [
       {
-        label: 'Countries with most neighbours',
+        label: 'Neighbours',
         data: chartData,
         backgroundColor: setOf20Colors,
       },
@@ -49,13 +49,71 @@ export const getCountriesWithMostNeighbours = (data, number) => {
   return dataForChart;
 };
 
-export const getCountriesOnSouthAndNorth = data => {
-  let northHemisphere = 0;
-  let southHemisphere = 0;
+export const getCountriesInHemispheres = data => {
+  let northernHemisphereCountries = 0;
+  let southernHemisphereCountries = 0;
 
   data.forEach(country => {
-    country.latlng[0] >= 0 ? northHemisphere++ : southHemisphere++;
+    country.latlng[0] >= 0
+      ? northernHemisphereCountries++
+      : southernHemisphereCountries++;
   });
 
-  const labels = ['Northern Hemisphere', 'SouthernHemisphere'];
+  const labels = ['Northern Hemisphere', 'Southern Hemisphere'];
+
+  const dataForChart = {
+    labels,
+    datasets: [
+      {
+        label: 'Countires on hemispheres (N/S)',
+        data: [northernHemisphereCountries, southernHemisphereCountries],
+        backgroundColor: ['green', 'yellow'],
+      },
+    ],
+  };
+  return dataForChart;
+};
+
+export const getCountriesInRegions = data => {
+  const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania', 'Polar'];
+  const numberOfCountriesForRegion = {
+    Africa: 0,
+    Americas: 0,
+    Asia: 0,
+    Europe: 0,
+    Oceania: 0,
+    Polar: 0,
+  };
+
+  data.forEach(country => {
+    const { region } = country;
+    if (region) {
+      numberOfCountriesForRegion[region]++;
+    }
+  });
+
+  const dataForChart = {
+    labels: regions,
+    datasets: [
+      {
+        label: 'Number of countries in region',
+        data: Object.values(numberOfCountriesForRegion),
+        backgroundColor: setOf20Colors,
+      },
+    ],
+  };
+
+  return dataForChart;
+};
+
+export const getGiniIndexesForCountries = (data, number) => {
+  const x = data.reduce((results, item) => {
+    const { name, gini } = item;
+    if (gini) {
+      results.push({ [name]: gini });
+    }
+    return results;
+  }, []);
+
+  return x;
 };

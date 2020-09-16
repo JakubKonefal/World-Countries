@@ -1,4 +1,5 @@
 @import '../../config/variables';
+@import '../../config/mixins';
 
 .CustomChart {
   position: relative;
@@ -25,6 +26,25 @@
   &:hover {
     background-color: $color1-hover;
   }
+}
+
+.CustomChart__Error {
+  @include flexCenter(column);
+  width: 45%;
+  height: 45%;
+  min-width: 360px;
+  margin: 5em 0;
+}
+
+.CustomChart__ErrorIcon {
+  font-size: 2.5rem;
+  color: red;
+}
+
+.CustomChart__ErrorLabel {
+  margin-top: 1em;
+  font-size: 2rem;
+  color: red;
 }
 
 @media (max-width: 1280px) {
