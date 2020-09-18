@@ -5,13 +5,15 @@ import {
   getCountriesWithMostNeighbours,
   getCountriesInHemispheres,
   getCountriesInRegions,
-  getGiniIndexesForCountries,
+  getCountriesWithMostTimezones,
 } from '../utils/dataTransform';
 import {
   mostNeighboursOptions,
   countriesHemispheresOptions,
   countriesInRegionsOptions,
+  mostTimezonesOptions,
 } from '../utils/chartsOptions';
+import ChartsWraper from '../shared/ChartsWraper/ChartsWraper';
 import Spinner from '../shared/Spinner/Spinner';
 import ErrorMessage from '../shared/ErrorMessage/ErrorMessage';
 import './Countries.scss';
@@ -28,7 +30,9 @@ const Countries = () => {
   );
   const [countriesInHemispheres, setCountriesInHemispheres] = useState([]);
   const [countriesInRegions, setCountriesInRegions] = useState([]);
-  const [countriesWithGiniIndexes, setCountriesWithGiniIndexes] = useState([]);
+  const [countriesWithMostTimezones, setCountriesWithMostTimezones] = useState(
+    [],
+  );
 
   const getInitialData = () => {
     axios
@@ -36,14 +40,15 @@ const Countries = () => {
       .then(res => {
         const { data } = res;
         if (data) {
-          console.log(data);
           setDataLoading(false);
           setCountriesWithMostNeighbors(
-            getCountriesWithMostNeighbours(data, 20),
+            getCountriesWithMostNeighbours(data, 21),
           );
           setCountriesInHemispheres(getCountriesInHemispheres(data));
           setCountriesInRegions(getCountriesInRegions(data));
-          setCountriesWithGiniIndexes(getGiniIndexesForCountries(data));
+          setCountriesWithMostTimezones(
+            getCountriesWithMostTimezones(data, 25),
+          );
         }
       })
       .catch(() => {
@@ -57,17 +62,11 @@ const Countries = () => {
   }
 
   return (
-    <div className="Countries">
+    <ChartsWraper>
       {dataErrorMsg ? (
         <ErrorMessage label={dataErrorMsg} />
       ) : (
         <>
-          <CustomChart
-            initialType="Horizontal Bars"
-            availableTypes={['Vertical Bars', 'Horizontal Bars']}
-            data={countriesWithMostNeighbors}
-            options={mostNeighboursOptions}
-          />
           <CustomChart
             initialType="Doughnut"
             availableTypes={['Pie', 'Doughnut']}
@@ -82,13 +81,19 @@ const Countries = () => {
           />
           <CustomChart
             initialType="Horizontal Bars"
+            availableTypes={['Vertical Bars', 'Horizontal Bars']}
+            data={countriesWithMostTimezones}
+            options={mostTimezonesOptions}
+          />
+          <CustomChart
+            initialType="Vertical Bars"
             availableTypes={['Horizontal Bars', 'Vertical Bars']}
             data={countriesWithMostNeighbors}
             options={mostNeighboursOptions}
           />
         </>
       )}
-    </div>
+    </ChartsWraper>
   );
 };
 
