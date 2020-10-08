@@ -57,7 +57,7 @@
   &::after {
     position: absolute;
     top: 50%;
-    right: -30px;
+    right: -26px;
     display: block;
     content: '';
     width: 12px;
@@ -70,11 +70,11 @@
 
 .Sidebar__Icon {
   font-size: 1.8rem;
-  margin-right: 0.5em;
+  margin-right: 0.4em;
 }
 
 @media (max-width: 1024px) {
   .Sidebar {
-    left: -230px;
+    left: -250px;
   }
 }

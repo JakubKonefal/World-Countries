@@ -2,20 +2,25 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CustomChart from '../shared/CustomChart/CustomChart';
 import {
+  populationOverTime,
+  populationDensityOverTime,
   getMostPopulatedCountries,
   getCountriesWithHighestPopDensity,
-  getPopulationInRegions,
-  getPopulationInHemispheres,
+  getPopulationPerRegion,
+  getPopulationPerHemisphere,
 } from '../utils/dataTransform';
 import {
   mostPopulatedOptions,
   highestPopDensityOptions,
-  populationInRegionsOptions,
-  populationInHemispheresOptions,
+  populationPerRegionOptions,
+  populationPerHemispheresOptions,
+  worldPopulationOptions,
+  worldPopulationDensityOptions,
 } from '../utils/chartsOptions';
 import ChartsWraper from '../shared/ChartsWraper/ChartsWraper';
 import Spinner from '../shared/Spinner/Spinner';
 import ErrorMessage from '../shared/ErrorMessage/ErrorMessage';
+import './Population.scss';
 
 const Population = () => {
   useEffect(() => {
@@ -24,18 +29,20 @@ const Population = () => {
 
   const [dataLoading, setDataLoading] = useState(true);
   const [dataErrorMsg, setDataErrorMsg] = useState('');
-  const [mostPopulatedCountries, setMostPopulatedCountries] = useState([]);
+  const [mostPopulatedCountries, setMostPopulatedCountries] = useState({});
 
   const [
     highestPopulationDensityCountries,
     setHighestPopulationDensityCountries,
-  ] = useState([]);
-  const [populationInRegions, setPopulationInRegions] = useState([]);
-  const [populationInHemispheres, setPopulationInHemispheres] = useState([]);
+  ] = useState({});
+  const [populationInRegions, setPopulationInRegions] = useState({});
+  const [populationInHemispheres, setPopulationInHemispheres] = useState({});
 
   const getInitialData = () => {
     axios
-      .get('https://restcountries.eu/rest/v2/all')
+      .get(
+        'https://restcountries.eu/rest/v2/all?fields=name;population;region;area;latlng',
+      )
       .then(res => {
         const { data } = res;
         if (data) {
@@ -44,8 +51,8 @@ const Population = () => {
           setHighestPopulationDensityCountries(
             getCountriesWithHighestPopDensity(data),
           );
-          setPopulationInRegions(getPopulationInRegions(data));
-          setPopulationInHemispheres(getPopulationInHemispheres(data));
+          setPopulationInRegions(getPopulationPerRegion(data));
+          setPopulationInHemispheres(getPopulationPerHemisphere(data));
         }
       })
       .catch(() => {
@@ -59,38 +66,61 @@ const Population = () => {
   }
 
   return (
-    <ChartsWraper>
+    <div data-aos="fade-down">
       {dataErrorMsg ? (
         <ErrorMessage label={dataErrorMsg} />
       ) : (
         <>
-          <CustomChart
-            data={mostPopulatedCountries}
-            options={mostPopulatedOptions}
-            initialType="Horizontal Bars"
-            availableTypes={['Vertical Bars', 'Horizontal Bars', 'Pie']}
-          />
-          <CustomChart
-            data={highestPopulationDensityCountries}
-            options={highestPopDensityOptions}
-            initialType="Vertical Bars"
-            availableTypes={['Horizontal Bars', 'Vertical Bars']}
-          />
-          <CustomChart
-            data={populationInRegions}
-            options={populationInRegionsOptions}
-            initialType="Pie"
-            availableTypes={['Vertical Bars', 'Horizontal Bars', 'Pie']}
-          />
-          <CustomChart
-            data={populationInHemispheres}
-            options={populationInHemispheresOptions}
-            initialType="Pie"
-            availableTypes={['Doughnut', 'Pie']}
-          />
+          <div className="Population__Header">
+            <h2 className="Population__HeaderText">
+              Total world population is around 7.8 billion. It took over 2
+              million years of human history for the world's population to reach
+              1 billion, and only 200 years more to reach 7 billion. Number of
+              living humans is growing rapidly and long-term global population
+              is difficult to predict.
+            </h2>
+          </div>
+          <ChartsWraper>
+            <CustomChart
+              data={populationOverTime}
+              options={worldPopulationOptions}
+              initialType="Line"
+              availableTypes={['Line']}
+            />
+            <CustomChart
+              data={populationDensityOverTime}
+              options={worldPopulationDensityOptions}
+              initialType="Line"
+              availableTypes={['Line']}
+            />
+            <CustomChart
+              data={mostPopulatedCountries}
+              options={mostPopulatedOptions}
+              initialType="Horizontal Bars"
+              availableTypes={['Vertical Bars', 'Horizontal Bars', 'Pie']}
+            />
+            <CustomChart
+              data={highestPopulationDensityCountries}
+              options={highestPopDensityOptions}
+              initialType="Vertical Bars"
+              availableTypes={['Horizontal Bars', 'Vertical Bars']}
+            />
+            <CustomChart
+              data={populationInRegions}
+              options={populationPerRegionOptions}
+              initialType="Pie"
+              availableTypes={['Vertical Bars', 'Horizontal Bars', 'Pie']}
+            />
+            <CustomChart
+              data={populationInHemispheres}
+              options={populationPerHemispheresOptions}
+              initialType="Pie"
+              availableTypes={['Doughnut', 'Pie']}
+            />
+          </ChartsWraper>
         </>
       )}
-    </ChartsWraper>
+    </div>
   );
 };
 

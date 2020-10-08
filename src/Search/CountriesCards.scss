@@ -1,0 +1,6 @@
+@import '../config/mixins';
+
+.CountriesCards {
+  @include flexCenter(row);
+  flex-wrap: wrap;
+}

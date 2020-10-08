@@ -1,91 +1,6 @@
-const setOfColors = [
-  '#96a13a',
-  '#56536B',
-  '#575C55',
-  '#6C7D47',
-  '#ACC12F',
-  '#F1A208',
-  '#B86f52',
-  '#F78764',
-  '#D87CAC',
-  '#F9B9C3',
-  '#D2E4C4',
-  '#E4E9B2',
-  '#6C7D47',
-  '#E7E08B',
-  '#00A7E1',
-  '#D7263D',
-  '#D138BF',
-  '#61FF7E',
-  '#F7CB15',
-  '#2708A0',
-  '#CEB1BE',
-  '#EA9010',
-  '#EA9010',
-  '#805D93',
-  '#FFD3BA',
-  '#FFC43D',
-  '#A5BE00',
-  '#32161F',
-  '#C8963E',
-  '#D1462F',
-];
+import setOfColors from '../config/chartsColorSet';
 
-export const getCountriesWithMostNeighbours = (data, number) => {
-  const countriesWithMostNeighbours = data.map(country => {
-    const { name, borders } = country;
-    return { name, neighbours: borders.length };
-  });
-
-  const sortedCountriesWithMostNeighbours = countriesWithMostNeighbours
-    .sort((a, b) => b.neighbours - a.neighbours)
-    .slice(0, number);
-
-  const labels = sortedCountriesWithMostNeighbours.map(country => country.name);
-  const chartData = sortedCountriesWithMostNeighbours.map(
-    country => country.neighbours,
-  );
-
-  const dataForChart = {
-    labels,
-    datasets: [
-      {
-        label: 'Neighbours',
-        data: chartData,
-        backgroundColor: setOfColors,
-      },
-    ],
-  };
-
-  return dataForChart;
-};
-
-export const getCountriesInHemispheres = data => {
-  let northernHemisphereCountries = 0;
-  let southernHemisphereCountries = 0;
-
-  data.forEach(country => {
-    country.latlng[0] >= 0
-      ? northernHemisphereCountries++
-      : southernHemisphereCountries++;
-  });
-
-  const labels = ['Northern Hemisphere', 'Southern Hemisphere'];
-
-  const dataForChart = {
-    labels,
-    datasets: [
-      {
-        label: 'Countires on hemispheres (N/S)',
-        data: [northernHemisphereCountries, southernHemisphereCountries],
-        backgroundColor: ['green', 'yellow'],
-      },
-    ],
-  };
-  return dataForChart;
-};
-
-export const getCountriesInRegions = data => {
+export const getCountriesPerRegion = data => {
   const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania', 'Polar'];
   const numberOfCountriesPerRegion = {
     Africa: 0,
@@ -110,6 +25,67 @@ export const getCountriesInRegions = data => {
         label: 'Number of countries in region',
         data: Object.values(numberOfCountriesPerRegion),
         backgroundColor: setOfColors,
+        borderWidth: 3,
+        borderColor: '#000',
+        hoverBorderColor: '#fff',
+      },
+    ],
+  };
+
+  return dataForChart;
+};
+
+export const getCountriesPerHemisphere = data => {
+  let northernHemisphereCountries = 0;
+  let southernHemisphereCountries = 0;
+
+  data.forEach(country => {
+    country.latlng[0] >= 0
+      ? northernHemisphereCountries++
+      : southernHemisphereCountries++;
+  });
+
+  const labels = ['Northern Hemisphere', 'Southern Hemisphere'];
+
+  const dataForChart = {
+    labels,
+    datasets: [
+      {
+        label: 'Countires on hemispheres (N/S)',
+        data: [northernHemisphereCountries, southernHemisphereCountries],
+        backgroundColor: ['green', 'yellow'],
+        borderWidth: 3,
+        borderColor: '#000',
+        hoverBorderColor: '#fff',
+      },
+    ],
+  };
+  return dataForChart;
+};
+
+export const getCountriesWithMostNeighbours = (data, number) => {
+  const countriesWithMostNeighbours = data.map(country => {
+    const { name, borders } = country;
+    return { name, neighbours: borders.length };
+  });
+
+  const sortedCountriesWithMostNeighbours = countriesWithMostNeighbours
+    .sort((a, b) => b.neighbours - a.neighbours)
+    .slice(0, number);
+
+  const labels = sortedCountriesWithMostNeighbours.map(country => country.name);
+  const chartData = sortedCountriesWithMostNeighbours.map(
+    country => country.neighbours,
+  );
+
+  const dataForChart = {
+    labels,
+    datasets: [
+      {
+        label: 'Neighbours',
+        data: chartData,
+        backgroundColor: setOfColors,
+        hoverBorderColor: '#fff',
       },
     ],
   };
@@ -141,11 +117,84 @@ export const getCountriesWithMostTimezones = (data, number) => {
         label: 'Timezones',
         data: chartData,
         backgroundColor: setOfColors,
+        hoverBorderColor: '#fff',
+        barPercentage: '0.75',
+        categoryPercentage: '0.7',
       },
     ],
   };
 
   return dataForChart;
+};
+
+export const populationOverTime = {
+  labels: [
+    '0',
+    '200',
+    '600',
+    '1000',
+    '1400',
+    '1800',
+    '1900',
+    '1950',
+    '1970',
+    '1990',
+    '2000',
+    '2010',
+    '2020',
+  ],
+  datasets: [
+    {
+      label: 'Population',
+      data: [
+        170000000,
+        190000000,
+        200000000,
+        275000000,
+        350000000,
+        1000000000,
+        1600000000,
+        2584034261,
+        3700437046,
+        5327231061,
+        6143493823,
+        6956823603,
+        7794798739,
+      ],
+      backgroundColor: setOfColors,
+      lineTension: '0.01',
+      pointRadius: '5',
+    },
+  ],
+};
+
+export const populationDensityOverTime = {
+  labels: [
+    '0',
+    '200',
+    '600',
+    '1000',
+    '1400',
+    '1800',
+    '1900',
+    '1950',
+    '1970',
+    '1990',
+    '2000',
+    '2010',
+    '2020',
+  ],
+  datasets: [
+    {
+      label: 'People per square km',
+      data: [1.14, 1.27, 1.34, 1.84, 2.34, 7, 11, 17, 25, 36, 41, 47, 52],
+      backgroundColor: setOfColors,
+      lineTension: '0.55',
+      fill: 'false',
+      pointStyle: 'triangle',
+      pointRadius: '6',
+    },
+  ],
 };
 
 export const getMostPopulatedCountries = data => {
@@ -224,7 +273,7 @@ export const getCountriesWithHighestPopDensity = data => {
   return dataForChart;
 };
 
-export const getPopulationInRegions = data => {
+export const getPopulationPerRegion = data => {
   const regions = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania', 'Polar'];
   const numberOfPeoplePerRegion = {
     Africa: 0,
@@ -256,7 +305,7 @@ export const getPopulationInRegions = data => {
   return dataForChart;
 };
 
-export const getPopulationInHemispheres = data => {
+export const getPopulationPerHemisphere = data => {
   let northernHemispherePopulation = 0;
   let southernHemispherePopulation = 0;
 
@@ -334,6 +383,9 @@ export const getAreaPerRegion = data => {
         label: 'People',
         data: Object.values(areaPerRegion),
         backgroundColor: setOfColors,
+        borderWidth: '4',
+        borderAlign: 'inner',
+        hoverBorderColor: '#000',
       },
     ],
   };
@@ -361,20 +413,28 @@ export const getAreaPerHemisphere = data => {
         label: 'Area per hemisphere (square km)',
         data: [northernHemisphereArea, southernHemisphereArea],
         backgroundColor: ['green', 'yellow'],
+        hoverBackgroundColor: '#ccc',
       },
     ],
   };
   return dataForChart;
 };
 
-// export const getGiniIndexesForCountries = (data, number) => {
-//   const x = data.reduce((results, item) => {
-//     const { name, gini } = item;
-//     if (gini) {
-//       results.push({ [name]: gini });
-//     }
-//     return results;
-//   }, []);
+export const getEarthSurface = () => {
+  const labels = ['Lands', 'Water'];
+  const chartData = [148940000, 361132000];
 
-//   return x;
-// };
+  const dataForChart = {
+    labels,
+    datasets: [
+      {
+        label: 'Area',
+        data: chartData,
+        backgroundColor: ['green', 'blue'],
+        hoverBackgroundColor: '#ccc',
+      },
+    ],
+  };
+
+  return dataForChart;
+};

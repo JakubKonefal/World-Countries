@@ -1,0 +1,104 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.Search__Header {
+  width: 100%;
+  margin-bottom: 3em;
+  box-sizing: border-box;
+  padding: 1em 12%;
+  background: url('../assets/global-data.png');
+  @include headerBackground();
+}
+
+.Search__HeaderText {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.Search__SearchBarWraper {
+  @include flexCenter(row);
+  position: relative;
+  width: 400px;
+  margin: 0 auto 3em;
+}
+
+.Search__RandomCountryTooltip {
+  @include flexCenter(row);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -75px;
+  color: white;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-50%) rotate(225deg);
+    color: #ccc;
+  }
+}
+
+.Search__RandomCountryIcon {
+  font-size: 2.25rem;
+}
+
+.Search__SearchBar {
+  width: 400px;
+  background-color: #fff;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.Search__ClearBtn {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  color: $color1;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.Hidden {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .Search__HeaderText {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .Search__RandomCountryTooltip {
+    top: 80px;
+    transform: translateY(-50%);
+    right: 0;
+  }
+
+  .Search__SearchBarWraper {
+    margin: 0 auto 5em;
+  }
+}
+
+@media (max-width: 401px) {
+  .Search__SearchBarWraper {
+    width: 350px;
+  }
+  .Search__SearchBar {
+    width: 350px;
+  }
+}
+
+@media (max-width: 320px) {
+  .Search__SearchBarWraper {
+    width: 315px;
+  }
+  .Search__SearchBar {
+    width: 315px;
+  }
+}

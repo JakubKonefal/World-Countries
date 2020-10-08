@@ -1,19 +1,288 @@
 @import '../config/mixins';
 @import '../config/variables';
 
+.Home {
+  position: relative;
+  display: block;
+  margin-top: 70px;
+  min-height: 750px;
+  height: calc(100vh - 70px);
+  background: url('../assets/worldmap.jpg');
+  background-size: cover;
+  animation: background 60s linear infinite;
+  transition: 0.3s;
+}
+
 .Home__Header {
   @include flexCenter(column);
-  padding-top: 5%;
-  color: #26ca34;
+  box-sizing: border-box;
+  padding: 2.5% 10% 0;
+  color: $color5;
+  color: rgb(117, 220, 14);
 }
 
 .Home__Title {
-  margin: 0;
+  margin: 0 0 0.5em;
   font-size: 2.2rem;
+  text-align: center;
 }
 
 .Home__Subtitle {
   margin: 0;
   font-size: 1.6rem;
   color: $color4;
+  text-align: center;
+}
+
+.Home__Earth {
+  @include absoluteCenter(-50%, -50%);
+  top: 57.5%;
+  width: 200px;
+  height: 200px;
+  background: url('../assets/earth.png');
+  background-size: cover;
+  animation: earth 12s linear infinite;
+  border-radius: 50%;
+  box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5);
+}
+
+.Home__Pulse {
+  @include absoluteCenter(-50%, -50%);
+  display: block;
+  border-radius: 50%;
+  background: transparent;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  animation: pulse 6s linear infinite;
+  &:nth-child(2) {
+    animation-delay: -2s;
+  }
+  &:nth-child(3) {
+    animation-delay: -4s;
+  }
+}
+
+@keyframes earth {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 719px 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .Home {
+    margin-left: 0;
+  }
+}
+
+@keyframes background {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 1600px 0;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    width: 200px;
+    height: 200px;
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    width: 600px;
+    height: 600px;
+    opacity: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .Home__Earth {
+    width: 150px;
+    height: 150px;
+    box-shadow: inset 0 0 32px rgba(255, 255, 255, 0.5);
+  }
+
+  @keyframes pulse {
+    0% {
+      width: 150px;
+      height: 150px;
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      width: 500px;
+      height: 500px;
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .Home__Earth {
+    top: 70%;
+  }
+}
+
+@media (max-width: 320px) {
+  .Home__Earth {
+    width: 80px;
+    height: 80px;
+  }
+
+  @keyframes pulse {
+    0% {
+      width: 80px;
+      height: 80px;
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 1280px) and (orientation: landscape) {
+  .Home__Title {
+    font-size: 2rem;
+  }
+
+  .Home__Subtitle {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+  .Home__Title {
+    font-size: 1.9rem;
+  }
+
+  .Home__Subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 640px) and (orientation: landscape) {
+  .Home__Earth {
+    top: 65%;
+  }
+}
+
+@media (max-width: 414px) {
+  .Home__Earth {
+    width: 100px;
+    height: 100px;
+  }
+
+  @keyframes pulse {
+    0% {
+      width: 100px;
+      height: 100px;
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      width: 350px;
+      height: 350px;
+      opacity: 0;
+    }
+  }
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+  .Home__Title {
+    font-size: 2.5rem;
+  }
+
+  .Home__Subtitle {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 601px) and (orientation: portrait) {
+  .Home__Earth {
+    top: 65%;
+  }
+
+  .Home__Title {
+    font-size: 2.2rem;
+  }
+
+  .Home__Subtitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 414px) and (orientation: portrait) {
+  .Home__Earth {
+    top: 65%;
+  }
+
+  .Home__Title {
+    font-size: 1.9rem;
+  }
+
+  .Home__Subtitle {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 375px) and (orientation: portrait) {
+  .Home__Title {
+    font-size: 1.8rem;
+  }
+
+  .Home__Subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 320px) and (orientation: portrait) {
+  .Home__Earth {
+    width: 80px;
+    height: 80px;
+  }
+
+  @keyframes pulse {
+    0% {
+      width: 80px;
+      height: 80px;
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.5;
+    }
+
+    100% {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+  }
 }

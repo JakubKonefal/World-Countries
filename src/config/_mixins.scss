@@ -5,6 +5,23 @@
   flex-direction: $direction;
 }
 
+@mixin absoluteCenter($x, $y) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate($x, $y);
+}
+
+@mixin headerBackground {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: 0.3s linear;
+  &:hover {
+    box-shadow: 0 0 5px 0.1px #fff inset;
+  }
+}
+
 @mixin linkUnstyle {
   text-decoration: none;
   &:visited {

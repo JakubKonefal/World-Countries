@@ -1,12 +1,34 @@
 @import '../config/mixins';
-@import '../config/variables';
 
-.Countries {
-  @include flexCenter(row);
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+.Countries__Header {
   width: 100%;
-  min-height: calc(100vh - 70px);
+  margin-bottom: 5em;
   box-sizing: border-box;
-  padding: 1em;
+  padding: 1em 7%;
+  background: url('../assets/political-worldmap.png');
+  @include headerBackground();
+}
+
+.Countries__HeaderText {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.Countries__TerritoriesLabel {
+  background-color: transparent;
+  color: green;
+}
+
+@media (max-width: 1280px) {
+  .Countries__HeaderText {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .Countries__HeaderText {
+    font-size: 1.4rem;
+  }
 }

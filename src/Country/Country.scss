@@ -1,0 +1,187 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.Country {
+  @include flexCenter(column);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 4em 15% 2em;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.Country__Header {
+  @include flexCenter(row);
+  position: relative;
+  width: 100%;
+}
+
+.Country__Name {
+  margin: 0;
+  font-size: 3rem;
+  color: $color1;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-decoration: underline;
+  text-align: center;
+  z-index: 1000;
+}
+
+.Country__GoBackBtnWraper {
+  @include flexCenter(row);
+  @include absoluteCenter(-50%, -50%);
+  top: -20px;
+  font-size: 1.3rem;
+  color: $color1;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.Country__ArrowLefIcon {
+  transform: rotateY(180deg);
+  margin-right: 5px;
+}
+
+.Country__GoBackBtn {
+  margin-left: auto;
+  border: none;
+  background-color: transparent;
+  color: $color1;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.Country__InfoLabel {
+  margin: 1.25em 0 0;
+  color: $color5;
+  font-size: 2.3rem;
+  width: 100%;
+  text-align: left;
+}
+
+.Country__GridContainer {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  width: 100%;
+  background-color: $color4;
+  border: 2px solid $color2;
+  border-radius: 5px;
+}
+
+.Country__GridItem {
+  padding: 0.5em 0;
+}
+
+.Country__GridItem_InfoType {
+  @include flexCenter(row);
+  padding: 0 5px;
+  border-right: 1px solid $color2;
+  border-bottom: 1px solid $color2;
+  font-weight: bold;
+  text-align: center;
+  &:nth-last-child(2) {
+    border-bottom: none;
+  }
+}
+
+.Country__GridItem_Info {
+  padding-left: 2em;
+  color: $color5;
+  border-bottom: 1px solid $color2;
+  &:last-child {
+    border: none;
+  }
+}
+
+.Country__Flag {
+  margin-top: 3em;
+  width: 25vw;
+  min-width: 400px;
+}
+
+.Country__Border_Link {
+  color: inherit;
+  &:visited {
+    color: inherit;
+  }
+}
+
+@media (max-width: 1280px) {
+  .Country__Name {
+    font-size: 2.8rem;
+  }
+
+  .Country__InfoLabel {
+    font-size: 2.1rem;
+  }
+
+  .Country__GridItem_InfoType {
+    font-size: 1rem;
+  }
+
+  .Country__GridItem_Info {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .Country {
+    padding: 4em 5% 2em;
+  }
+
+  .Country__Name {
+    font-size: 2.5rem;
+  }
+
+  .Country__GridContainer {
+    grid-template-columns: 18% 82%;
+  }
+
+  .Country__GridItem_Info {
+    padding-left: 1.2em;
+  }
+
+  .Country__Flag {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 414px) and (orientation: portrait) {
+  .Country {
+    padding: 4em 2.5% 2em;
+  }
+
+  .Country__Name {
+    font-size: 2.3rem;
+  }
+
+  .Country__GridContainer {
+    grid-template-columns: 20% 80%;
+  }
+
+  .Country__GridItem_InfoType {
+    font-size: 0.9rem;
+  }
+
+  .Country__GridItem_Info {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .Country__Name {
+    font-size: 2.1rem;
+  }
+
+  .Country__GridContainer {
+    grid-template-columns: 22.5% 77.5%;
+  }
+
+  .Country__Flag {
+    min-width: 280px;
+  }
+}

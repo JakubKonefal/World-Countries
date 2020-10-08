@@ -13,20 +13,6 @@
   transition: 0.3s;
 }
 
-.Topbar__MenuIcon {
-  position: absolute;
-  top: 35px;
-  left: -50px;
-  transform: translateY(-50%);
-  font-size: 1.8rem;
-  color: $color1;
-  cursor: pointer;
-  transition: left 0.3s linear;
-  &:hover {
-    color: $color1-hover;
-  }
-}
-
 .Topbar__Link {
   @include linkUnstyle();
 }
@@ -36,10 +22,4 @@
   margin: 0;
   font-size: 2rem;
   font-style: italic;
-}
-
-@media (max-width: 1024px) {
-  .Topbar__MenuIcon {
-    left: 50px;
-  }
 }

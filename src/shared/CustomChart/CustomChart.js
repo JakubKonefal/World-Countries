@@ -32,8 +32,13 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
               onChange={handleSelectChartType}
               defaultValue={initialType}
             >
-              {availableTypes.map(type => (
-                <option value={type}>{type}</option>
+              {availableTypes.map((type, index) => (
+                <option
+                  key={`${options[type].title.text} ${index}`}
+                  value={type}
+                >
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -54,8 +59,13 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
               onChange={handleSelectChartType}
               defaultValue={initialType}
             >
-              {availableTypes.map(type => (
-                <option value={type}>{type}</option>
+              {availableTypes.map((type, index) => (
+                <option
+                  key={`${options[type].title.text} ${index}`}
+                  value={type}
+                >
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -76,8 +86,13 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
               onChange={handleSelectChartType}
               defaultValue={initialType}
             >
-              {availableTypes.map(type => (
-                <option value={type}>{type}</option>
+              {availableTypes.map((type, index) => (
+                <option
+                  key={`${options[type].title.text} ${index}`}
+                  value={type}
+                >
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -98,8 +113,13 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
               onChange={handleSelectChartType}
               defaultValue={initialType}
             >
-              {availableTypes.map(type => (
-                <option value={type}>{type}</option>
+              {availableTypes.map((type, index) => (
+                <option
+                  key={`${options[type].title.text} ${index}`}
+                  value={type}
+                >
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -120,8 +140,13 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
               onChange={handleSelectChartType}
               defaultValue={initialType}
             >
-              {availableTypes.map(type => (
-                <option value={type}>{type}</option>
+              {availableTypes.map((type, index) => (
+                <option
+                  key={`${options[type].title.text} ${index}`}
+                  value={type}
+                >
+                  {type}
+                </option>
               ))}
             </select>
           </div>
@@ -142,8 +167,13 @@ const CustomChart = ({ initialType, availableTypes, data, options }) => {
               onChange={handleSelectChartType}
               defaultValue={initialType}
             >
-              {availableTypes.map(type => (
-                <option value={type}>{type}</option>
+              {availableTypes.map((type, index) => (
+                <option
+                  key={`${options[type].title.text} ${index}`}
+                  value={type}
+                >
+                  {type}
+                </option>
               ))}
             </select>
           </div>

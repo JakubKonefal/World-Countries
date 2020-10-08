@@ -1,3 +1,97 @@
+export const countriesPerRegionOptions = {
+  Doughnut: {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const currentVal = dataset.data[tooltipItem.index];
+          const currentName = data.labels[tooltipItem.index];
+          const allCountriesCount = 250;
+          const percentage = ((currentVal / allCountriesCount) * 100).toFixed(
+            0,
+          );
+          return `${currentName}: ${currentVal} (${percentage}%)`;
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: 'Number of countries per region',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+  Pie: {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const currentVal = dataset.data[tooltipItem.index];
+          const currentName = data.labels[tooltipItem.index];
+          const allCountriesCount = 250;
+          const percentage = ((currentVal / allCountriesCount) * 100).toFixed(
+            0,
+          );
+          return `${currentName}: ${currentVal} (${percentage}%)`;
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: 'Number of countries per region',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+};
+
+export const countriesPerHemisphereOptions = {
+  Doughnut: {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const currentVal = dataset.data[tooltipItem.index];
+          const currentName = data.labels[tooltipItem.index];
+          const allCountriesCount = 250;
+          const percentage = ((currentVal / allCountriesCount) * 100).toFixed(
+            0,
+          );
+          return `${currentName}: ${currentVal} (${percentage}%)`;
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: 'Number of countries per hemisphere (N/S)',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+  Pie: {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const currentVal = dataset.data[tooltipItem.index];
+          const currentName = data.labels[tooltipItem.index];
+          const allCountriesCount = 250;
+          const percentage = ((currentVal / allCountriesCount) * 100).toFixed(
+            0,
+          );
+          return `${currentName}: ${currentVal} (${percentage}%)`;
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: 'Number of countries per hemisphere (N/S)',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+};
+
 export const mostNeighboursOptions = {
   'Horizontal Bars': {
     title: {
@@ -23,44 +117,6 @@ export const mostNeighboursOptions = {
   },
 };
 
-export const countriesHemispheresOptions = {
-  Doughnut: {
-    title: {
-      display: true,
-      text: 'Number of countries in hemispheres (N/S)',
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  },
-  Pie: {
-    title: {
-      display: true,
-      text: 'Number of countries in hemispheres (N/S)',
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  },
-};
-
-export const countriesInRegionsOptions = {
-  Doughnut: {
-    title: {
-      display: true,
-      text: 'Number of countries in region',
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  },
-  Pie: {
-    title: {
-      display: true,
-      text: 'Number of countries in region',
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-  },
-};
-
 export const mostTimezonesOptions = {
   'Horizontal Bars': {
     title: {
@@ -80,6 +136,28 @@ export const mostTimezonesOptions = {
     },
     scales: {
       yAxes: [{ ticks: { stepSize: 2, max: 14, min: 0 } }],
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+};
+
+export const worldPopulationOptions = {
+  Line: {
+    title: {
+      display: true,
+      text: 'World population over time',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+};
+
+export const worldPopulationDensityOptions = {
+  Line: {
+    title: {
+      display: true,
+      text: 'Population density over time',
     },
     responsive: true,
     maintainAspectRatio: false,
@@ -164,11 +242,11 @@ export const highestPopDensityOptions = {
   },
 };
 
-export const populationInRegionsOptions = {
+export const populationPerRegionOptions = {
   'Horizontal Bars': {
     title: {
       display: true,
-      text: 'Population in regions',
+      text: 'Population per region',
     },
     responsive: true,
     maintainAspectRatio: false,
@@ -176,7 +254,7 @@ export const populationInRegionsOptions = {
   'Vertical Bars': {
     title: {
       display: true,
-      text: 'Population in regions',
+      text: 'Population per region',
     },
     responsive: true,
     maintainAspectRatio: false,
@@ -196,14 +274,14 @@ export const populationInRegionsOptions = {
     },
     title: {
       display: true,
-      text: 'Population in regions',
+      text: 'Population per region',
     },
     responsive: true,
     maintainAspectRatio: false,
   },
 };
 
-export const populationInHemispheresOptions = {
+export const populationPerHemispheresOptions = {
   Doughnut: {
     tooltips: {
       callbacks: {
@@ -219,7 +297,7 @@ export const populationInHemispheresOptions = {
     },
     title: {
       display: true,
-      text: 'Number of people in hemispheres (N/S)',
+      text: 'Population per hemisphere (N/S)',
     },
     responsive: true,
     maintainAspectRatio: false,
@@ -239,7 +317,7 @@ export const populationInHemispheresOptions = {
     },
     title: {
       display: true,
-      text: 'Number of people in hemispheres (N/S)',
+      text: 'Population per hemisphere (N/S)',
     },
     responsive: true,
     maintainAspectRatio: false,
@@ -345,6 +423,49 @@ export const areaPerHemisphereOptions = {
     title: {
       display: true,
       text: 'Area per hemisphere (square km)',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+};
+
+export const earthSurfaceOptions = {
+  Doughnut: {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const currentVal = dataset.data[tooltipItem.index];
+          const currentName = data.labels[tooltipItem.index];
+          const totalArea = 510072000;
+          const percentage = ((currentVal / totalArea) * 100).toFixed(0);
+          return `${currentName}: ${currentVal} (${percentage}%)`;
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: 'Earth surface',
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+  },
+  Pie: {
+    tooltips: {
+      callbacks: {
+        label: (tooltipItem, data) => {
+          const dataset = data.datasets[tooltipItem.datasetIndex];
+          const currentVal = dataset.data[tooltipItem.index];
+          const currentName = data.labels[tooltipItem.index];
+          const totalArea = 510072000;
+          const percentage = ((currentVal / totalArea) * 100).toFixed(0);
+          return `${currentName}: ${currentVal} (${percentage}%)`;
+        },
+      },
+    },
+    title: {
+      display: true,
+      text: 'Earth surface',
     },
     responsive: true,
     maintainAspectRatio: false,

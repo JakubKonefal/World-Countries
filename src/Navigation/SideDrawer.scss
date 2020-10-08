@@ -1,0 +1,165 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.SideDrawer {
+  @include flexCenter(column);
+  position: fixed;
+  top: 0;
+  left: -100vw;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color2;
+  box-sizing: border-box;
+  padding: 0 1em;
+  transition: 0.3s;
+}
+
+.SideDrawer_Active {
+  @include flexCenter(column);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color2;
+  box-sizing: border-box;
+  padding: 0 1em;
+  transition: 0.3s;
+}
+
+.SideDrawer__List {
+  @include flexCenter(column);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: $color1;
+  font-size: 1.8rem;
+  font-style: italic;
+}
+
+.SideDrawer__ListItem {
+  @include flexCenter(row);
+  margin: 1em 0;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover {
+    color: $color1-hover;
+    padding-left: 1em;
+  }
+}
+
+.SideDrawer__Link {
+  @include linkUnstyle();
+}
+
+.SideDrawer__ActiveRoute {
+  position: relative;
+  &::after {
+    position: fixed;
+    top: 50%;
+    right: -26px;
+    display: block;
+    content: '';
+    width: 12px;
+    height: 12px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background-color: $color1-hover;
+  }
+}
+
+.SideDrawer__Icon {
+  font-size: 1.8rem;
+  margin-right: 0.4em;
+}
+
+.SideDrawer__MenuIcon {
+  position: fixed;
+  top: 50%;
+  color: $color1;
+  font-size: 1.85rem;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.SideDrawer__MenuIcon_Open {
+  left: -50px;
+  transform: translateY(-50%);
+  &:hover {
+    left: 15px;
+    color: $color1-hover;
+  }
+}
+
+.SideDrawer__MenuIcon_Close {
+  right: 10px;
+  transform: translateY(-50%) rotateY(180deg);
+  &:hover {
+    right: 15px;
+    color: $color1-hover;
+  }
+}
+
+@media (max-width: 1024px) {
+  .SideDrawer__MenuIcon_Open {
+    left: 10px;
+  }
+}
+
+@media (max-width: 896px) {
+  .SideDrawer__List {
+    padding-top: 1em;
+  }
+
+  .SideDrawer__ListItem {
+    margin: 0.25em 0;
+  }
+}
+
+@media (max-width: 667px) {
+  .SideDrawer__List {
+    padding-top: 1.25em;
+  }
+
+  .SideDrawer__ListItem {
+    margin: 0.35em 0;
+  }
+
+  .SideDrawer__ListItem {
+    font-size: 1.6rem;
+  }
+
+  .SideDrawer__Icon {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 800px) and (orientation: portrait) {
+  .SideDrawer__ListItem {
+    margin: 1em 0;
+  }
+
+  .SideDrawer__ListItem {
+    font-size: 2.2rem;
+  }
+
+  .SideDrawer__Icon {
+    font-size: 2.2rem;
+  }
+
+  .SideDrawer__MenuIcon {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-height: 620px) {
+  .SideDrawer__List {
+    padding-top: 1.25em;
+  }
+
+  .SideDrawer__ListItem {
+    margin: 0.35em 0;
+  }
+}

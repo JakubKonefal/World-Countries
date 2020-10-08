@@ -1,0 +1,102 @@
+@import '../config/mixins';
+@import '../config/variables';
+
+.CountryCard__Link {
+  position: relative;
+  text-decoration: none;
+  margin: 2em;
+}
+
+.CountryCard {
+  @include flexCenter(column);
+  justify-content: flex-start;
+  position: relative;
+  width: 400px;
+  height: 225px;
+  background-color: $color1;
+  border-radius: 10px;
+  color: black;
+  font-size: 1rem;
+  z-index: 100;
+  &::after {
+    @include flexCenter(column);
+    content: 'See More';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color1;
+    border-radius: 10px;
+    color: white;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: 0.3s;
+  }
+
+  &:hover::after {
+    opacity: 0.92;
+  }
+}
+
+.CountryCard__Name {
+  font-weight: bold;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.CountryCard__Header {
+  @include flexCenter(row);
+  box-sizing: border-box;
+  padding: 0.75em 10%;
+  background-color: $color4;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+}
+
+.CountryCard__Content {
+  @include flexCenter(column);
+  width: 100%;
+  height: 100%;
+}
+
+.CountryCard__ContentItem {
+  @include flexCenter(row);
+  justify-content: space-between;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 4%;
+  text-align: center;
+  &:nth-child(2) {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+}
+
+.CountryCard__CountryProp {
+  font-weight: bold;
+  text-align: left;
+}
+
+.CountryCard__CountryPropName {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  align-self: center;
+  text-align: left;
+}
+
+@media (max-width: 401px) {
+  .CountryCard {
+    width: 350px;
+  }
+}
+
+@media (max-width: 320px) {
+  .CountryCard {
+    width: 315px;
+  }
+}
