@@ -50,6 +50,7 @@
 
 .Sidebar__Link {
   @include linkUnstyle();
+  color: $color1;
 }
 
 .Sidebar__ActiveRoute {
