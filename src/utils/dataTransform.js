@@ -246,6 +246,7 @@ export const getCountriesWithHighestPopDensity = data => {
         const density = (population / area).toFixed();
         return { name, density };
       }
+      return {};
     })
     .sort((a, b) => b.density - a.density);
 

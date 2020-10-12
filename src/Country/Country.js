@@ -11,14 +11,6 @@ const Country = ({
     params: { alpha3Code },
   },
 }) => {
-  useEffect(() => {
-    getCountryData();
-  }, [alpha3Code]);
-
-  const [dataLoading, setDataLoading] = useState(true);
-  const [dataErrorMsg, setDataErrorMsg] = useState('');
-  const [country, setCountry] = useState({});
-
   const getCountryData = () => {
     axios
       .get(`https://restcountries.eu/rest/v2/alpha/${alpha3Code}`)
@@ -34,6 +26,12 @@ const Country = ({
         setDataLoading(false);
       });
   };
+
+  useEffect(getCountryData, [alpha3Code]);
+
+  const [dataLoading, setDataLoading] = useState(true);
+  const [dataErrorMsg, setDataErrorMsg] = useState('');
+  const [country, setCountry] = useState({});
 
   if (dataLoading) {
     return <Spinner />;
