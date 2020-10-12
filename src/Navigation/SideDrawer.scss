@@ -52,6 +52,7 @@
 
 .SideDrawer__Link {
   @include linkUnstyle();
+  color: $color1;
 }
 
 .SideDrawer__ActiveRoute {
