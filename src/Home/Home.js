@@ -8,9 +8,9 @@ const Home = () => (
         Get to know some facts about world's countries!
       </h2>
       <h6 className="Home__Subtitle">
-        Take a look at charts showing different types of information about
-        world's countries and other related stuff, or search for any individual
-        country and find out more about it!
+        Search for any individual country to find basic information about it, or
+        navigate through other sections to get some global statistics about
+        countries and other related stuff!
       </h6>
     </header>
 

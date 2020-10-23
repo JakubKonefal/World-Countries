@@ -70,9 +70,9 @@ const Search = () => {
           <div className="Search__Header">
             <h5 className="Search__HeaderText">
               If you'd like to know more about any given country, you can find
-              here much more information here. For example currencies,
-              languages, flags and different types of codes. Use searchbar to
-              find the country you want to know more about and click it.
+              much more information here. For example currencies, languages,
+              flags and different types of codes. Use searchbar to find the
+              country you want to know more about and click it.
             </h5>
           </div>
           <div className="Search__SearchBarWraper">
