@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import StylesProvider from '@material-ui/styles/StylesProvider';
 import {
@@ -9,9 +9,10 @@ import {
   ArrowForwardIos,
 } from '@material-ui/icons';
 import './SideDrawer.scss';
+import { SideDrawerContext } from '../shared/SideDrawerContext/SideDrawerContext';
 
 const SideDrawer = () => {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useContext(SideDrawerContext);
 
   return (
     <StylesProvider injectFirst>

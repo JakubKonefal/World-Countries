@@ -79,7 +79,7 @@
 .SideDrawer__MenuIcon {
   position: fixed;
   top: 50%;
-  color: $color1;
+  color: $color4;
   font-size: 1.85rem;
   transition: 0.2s;
   cursor: pointer;
@@ -88,6 +88,7 @@
 .SideDrawer__MenuIcon_Open {
   left: -50px;
   transform: translateY(-50%);
+  color: $color4;
   &:hover {
     left: 15px;
     color: $color1-hover;
@@ -97,6 +98,7 @@
 .SideDrawer__MenuIcon_Close {
   right: 10px;
   transform: translateY(-50%) rotateY(180deg);
+  color: $color4;
   &:hover {
     right: 15px;
     color: $color1-hover;

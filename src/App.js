@@ -9,6 +9,7 @@ import Population from './Population/Population';
 import Area from './Area/Area';
 import Search from './Search/Search';
 import Country from './Country/Country';
+import SideDrawerProvider from './shared/SideDrawerContext/SideDrawerContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -21,16 +22,18 @@ function App() {
 
   return (
     <>
-      <Topbar />
-      <MainContentWraper>
-        <Route path="/" exact component={Home} />
-        <Route path="/countries" component={Countries} />
-        <Route path="/population" component={Population} />
-        <Route path="/area" component={Area} />
-        <Route path="/search" exact component={Search} />
-        <Route path="/search/:alpha3Code" component={Country} />
-      </MainContentWraper>
-      <Sidebar />
+      <SideDrawerProvider>
+        <Topbar />
+        <MainContentWraper>
+          <Route path="/" exact component={Home} />
+          <Route path="/countries" component={Countries} />
+          <Route path="/population" component={Population} />
+          <Route path="/area" component={Area} />
+          <Route path="/search" exact component={Search} />
+          <Route path="/search/:alpha3Code" component={Country} />
+        </MainContentWraper>
+        <Sidebar />
+      </SideDrawerProvider>
     </>
   );
 }
